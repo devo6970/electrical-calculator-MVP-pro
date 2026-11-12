@@ -1,0 +1,35 @@
+src/
+├── components/
+│   ├── layout/
+│   │   ├── SidebarNav.tsx          # Searchable category accordion + NEC standard filter
+│   │   ├── HeaderBar.tsx           # Unit toggle (Imperial/Metric) & favorites
+│   │   └── AppShell.tsx
+│   └── calculator/
+│       ├── DynamicForm.tsx         # Renders inputs dynamically from calculator schema
+│       ├── FormulaCard.tsx         # Displays live LaTeX/step-by-step math breakdown
+│       └── ResultBadge.tsx         # Pass/Fail & severity screening (e.g., NEC 3% limit)
+├── data/
+│   └── nec-tables/                 # Static JSON lookup tables (zero API latency)
+│       ├── table-310-16.json       # Conductor ampacities (Cu/Al, 60°C/75°C/90°C)
+│       ├── chapter-9-table-8.json  # Conductor properties & DC/AC resistance
+│       ├── chapter-9-table-4.json  # Conduit dimensions & 40% fill areas
+│       └── standard-breakers.json  # NEC 240.6(A) standard OCPD ratings
+├── calculators/                    # Pure TypeScript math & schema definitions
+│   ├── registry.ts                 # Master index combining all 9 categories
+│   ├── circuit-protection/
+│   │   ├── breakerSize.ts
+│   │   ├── arcFlash.ts
+│   │   └── index.ts
+│   ├── voltage-drop-sizing/
+│   │   ├── voltageDropCu.ts
+│   │   ├── wireAmpacity.ts
+│   │   ├── conduitFill.ts
+│   │   └── index.ts
+│   ├── power-load/
+│   ├── battery-ups/
+│   ├── power-quality/
+│   ├── motors-vfds/
+│   ├── renewable-energy/
+│   └── generators-backup/
+└── utils/
+    └── unitConversions.ts          # ft <-> m, AWG <-> mm², °F <-> °C helpers
