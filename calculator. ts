@@ -1,0 +1,35 @@
+// src/types/calculator.ts
+export interface CalculatorSchema {
+  id: string;
+  title: string;
+  category: 
+    | 'Circuit Protection'
+    | 'Voltage Drop & Conductor Sizing'
+    | 'Power & Load'
+    | 'Battery & UPS'
+    | 'Power Quality'
+    | 'Motors & VFDs'
+    | 'Renewable Energy'
+    | 'Generators & Backup';
+  standards: ('NEC' | 'IEEE 1584' | 'IEC' | 'IES' | 'NFPA 101')[];
+  description: string;
+  formulaDisplay: string; // Shown in the "Method & Formula" drawer
+  inputs: {
+    key: string;
+    label: string;
+    type: 'number' | 'select' | 'toggle';
+    unit?: string;
+    options?: { label: string; value: string | number }[];
+    defaultValue: string | number | boolean;
+  }[];
+  calculate: (values: Record<string, any>, isMetric: boolean) => {
+    primaryResult: { label: string; value: string; unit?: string };
+    secondaryResults: { label: string; value: string; unit?: string }[];
+    status?: {
+      level: 'PASS' | 'WARNING' | 'FAIL' | 'INFO';
+      badgeText: string; // e.g., "EXCELLENT (<3%)", "OVERFILLED", "HIGH"
+      message: string;
+    };
+    steps: string[]; // Transparent step-by-step audit trail
+  };
+}
